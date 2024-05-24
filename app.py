@@ -15,11 +15,11 @@ import re
 app = Flask(__name__)
 
 # 必須放上自己的Channel Access Token
-line_bot_api = LineBotApi('+Baha1C6jev4arbhvzqmRUFRI9VsqEymoDS3boni3Bdm1DRwiX6mw8hRoDyJQWLjnEtvO1xyqbBH686TlNNizHxCw7slwsHkkCArxaICVyyBJIUj2ABs0rCH7lR+rnmE+TSucVXacO4P42mcdEybwwdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('')
 # 必須放上自己的Channel Secret
-handler = WebhookHandler('42025dca3468ff3e0d068adcd00ce73d')
+handler = WebhookHandler('')
 # 必須放上自己的ID
-line_bot_api.push_message('Ud4aabd9e2c01723cfe23818b39354398', TextSendMessage(text='聒聒我是雲端鸚鵡,你可以開始了'))
+line_bot_api.push_message('', TextSendMessage(text='上線囉！'))
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -46,8 +46,8 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
-    if re.match('告訴我秘密',message):
-        line_bot_api.reply_message(event.reply_token,TextSendMessage('才不告訴你哩！'))
+    if re.match('你好',message):
+        line_bot_api.reply_message(event.reply_token,TextSendMessage('你好！'))
     elif re.match('版本',message):
         line_bot_api.reply_message(event.reply_token,TextSendMessage('雲端版本04011108'))
     elif re.match('看菜單',message):        
@@ -77,7 +77,7 @@ def handle_message(event):
                     ),
                     MessageAction(
                         label='晚餐',
-                        text='你選擇晚餐❤'
+                        text='你選擇晚餐'
                     )
                 ]
             )
@@ -92,7 +92,7 @@ def handle_message(event):
                         image_url='https://cpok.tw/wp-content/uploads/2023/03/11.png',
                         action=PostbackAction(
                             label='麥當勞套餐',
-                            display_text='以點選麥當勞套餐',
+                            display_text='麥當勞套餐',
                             data='action=麥當勞套餐回傳'
                         )
                     ),
@@ -100,7 +100,7 @@ def handle_message(event):
                         image_url='https://s3.goodlife.tw/system/att/000/015/212/image/1485386709.png',
                         action=PostbackAction(
                              label='肯德基套餐',
-                            display_text='以點選肯德基套餐',
+                            display_text='肯德基套餐',
                             data='action=肯德基套餐回傳'
                         )
                     ),
@@ -108,7 +108,7 @@ def handle_message(event):
                         image_url='https://www.mos.com.tw/Upload/images/202107/202107-%E5%B1%85%E5%AE%B6%E9%98%B2%E7%96%AB%E5%84%AA%E6%83%A0%E5%B0%88%E5%8D%80EDM-%E6%97%A9%E9%A4%90.jpg',
                         action=PostbackAction(
                              label='摩斯套餐',
-                            display_text='以點選摩斯套餐',
+                            display_text='摩斯套餐',
                             data='action=摩斯套餐回傳'
                         )
                     )
